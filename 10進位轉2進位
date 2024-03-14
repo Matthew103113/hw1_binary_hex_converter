@@ -1,35 +1,20 @@
-#include <stdio.h>
-#include <stdlib.h>
-int main()
-{
-	int input; //宣告輸入的變數
-	int a,b; //用a跟b紀錄等一下要運算的東西
-	int sum = 0;//總和，最後要輸出用的
-	scanf_s("%d", &input); //手動輸入要轉換的數字
-	a = input; //讓輸入等於等一下要運算的數字
-	int i, j = 0; //j紀錄現在是第幾位數，i是計算已經乘了幾個10
-	while (a > 0) //不斷短除法直到a等於1
-	{
-			b = a%2; //用b紀錄短除法的餘數
-			a = a / 2; //用a紀錄短除法除完的數字
-			for (i = 1; j >= i; i++)  //這個程式的精華
-			{
-				b = b * 10;
-			}
-			/*
-				整陀for一起講我們短除法除出來的數字
-				重點是要取餘數，所以說我們重點就是要抓b
-				不過如果透過短除法運算
-				先運算出來的是最後一個數字
-				因為除完之後是要由下而上讀的
-				所以說我們先把第一個數字存在個位數
-				第二個數字*10再加進第一個數字
-				第三個數字*100再加進去......以此類推
-				所以這個for我們要算說b要乘以多少(後面加上幾個0)
-			*/
-			sum = sum + b; // 把運算後的b加進去
-			j++; //紀錄現在是第幾個數字(第1個數字*10 第2個數字*100......
-	}
-	printf("%d",sum); //輸出
-	system("PAUSE");
-}
+def decimal_to_binary(decimal):
+    if 0 <= decimal <= 255:
+        binary = ""
+        while decimal > 0:
+            remainder = decimal % 2
+            binary = str(remainder) + binary
+            decimal //= 2
+        # 補足為8位元的二進位數字
+        binary = binary.zfill(8)
+        return binary
+    else:
+        return "請輸入範圍在0到255之間的數字。"
+
+def main():
+    decimal_input = int(input("請輸入一個10進位數字（0-255）："))
+    binary_output = decimal_to_binary(decimal_input)
+    print("對應的2進位數字為：", binary_output)
+
+if __name__ == "__main__":
+    main()
